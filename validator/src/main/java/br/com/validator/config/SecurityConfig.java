@@ -11,6 +11,7 @@ import org.springframework.security.config.annotation.web.configuration.WebSecur
 import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.crypto.factory.PasswordEncoderFactories;
 import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.security.web.access.channel.ChannelProcessingFilter;
 
 @Configuration
 @EnableWebSecurity
@@ -41,7 +42,9 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers("/**").hasAnyRole("ADMIN")
                 .anyRequest().authenticated()
                 .and().httpBasic()
-                .and().sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS);
+                .and().sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS)
+                .and()
+                .addFilterBefore(new SimpleCorsFilter(), ChannelProcessingFilter.class);
         http.exceptionHandling().accessDeniedHandler(accessDeniedException());
     }
 }

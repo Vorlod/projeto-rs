@@ -79,9 +79,7 @@ public class ValidatorService {
             throw new BadRequestException("requisicao.preco.null");
         }
 
-        boolean resultado = false;
-
-         resultado = requisicaoDTO.getNumDoc().length() == 11 ? isCPF(requisicaoDTO.getNumDoc()) : isCNPJ(requisicaoDTO.getNumDoc());
+        boolean resultado = requisicaoDTO.getNumDoc().length() == 11 ? isCPF(requisicaoDTO.getNumDoc()) : isCNPJ(requisicaoDTO.getNumDoc());
 
         Requisicao requisicao = new Requisicao();
         requisicao.setIdUsuario(usuario);

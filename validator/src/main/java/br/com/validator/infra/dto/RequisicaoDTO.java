@@ -5,6 +5,14 @@ public class RequisicaoDTO {
     String cliente;
     String numDoc;
 
+    public RequisicaoDTO(String cliente, String numDoc) {
+        this.cliente = cliente;
+        this.numDoc = numDoc;
+    }
+    public RequisicaoDTO() {
+
+    }
+
     public String getCliente() {
         return cliente;
     }
